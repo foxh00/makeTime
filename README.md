@@ -1,2 +1,2 @@
 # makeTime
-Redux of MKTime project
+Redux of MKTime Project's Github Repo
