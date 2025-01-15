@@ -69,7 +69,8 @@
     }  
   }?>
 
- 
+<html>
+<div class="container">
  <form action="register.php" method="post">
  <label for="inputfirst_name">First Name</label>
 	<input type="text" 
@@ -113,9 +114,12 @@
 		       required 
 		       placeholder="* Confirm Password" 
 		       value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>">
+           <br>
 					
 		<input type="submit" 
 		       value="Create Account Now">
 		</form>
     <!-- closing form -->
     <p><br><br><a href="login.php">Already have an account? Login here.</a></p>
+</div>
+</html>
