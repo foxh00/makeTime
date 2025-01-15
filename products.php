@@ -1,3 +1,4 @@
+
 <?php
 require ('connect_db.php'); 
 require ('functions.php'); 

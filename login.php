@@ -1,3 +1,4 @@
+
 <?php 
 include ( './nav.php' ) ;
 # Displays any error messages if there is an error.
@@ -8,7 +9,8 @@ if ( isset( $errors ) && !empty( $errors ) )
  echo 'Please try again or <a href="register.php">Register</a></p>' ;
 }
 ?>
-
+<html>
+<div class="container">
 <form action="login_action.php" method="post">
   <label for="inputemail">Enter Your Email</label>
   <input type="text" 
@@ -24,9 +26,11 @@ if ( isset( $errors ) && !empty( $errors ) )
 	     class="form-control" 
 		 required 
 	     placeholder="* Enter Password">
+		 <br>
 		
   <input type="submit" value="Login">
 </form>
 <!-- closing form -->
 <p><br><br><a href="register.php">No account? Register here.</a></p>
-
+</div>
+</html>
