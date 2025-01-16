@@ -1,11 +1,8 @@
 <?php
-# Function to load specified or default URL.
+# Function to load
 function load( $page = 'login.php' )
 {
-  # Begin URL with protocol, domain, and current directory.
   $url = 'http://' . $_SERVER[ 'HTTP_HOST' ] . dirname( $_SERVER[ 'PHP_SELF' ] ) ;
-
-  # Remove trailing slashes then append page name to URL.
   $url = rtrim( $url, '/\\' ) ;
   $url .= '/' . $page ;
 
@@ -13,10 +10,9 @@ function load( $page = 'login.php' )
   header( "Location: $url" ) ; 
   exit() ;
 }
-# Function to check email address and password. 
+# Function to check email and password. 
 function validate( $link, $email = '', $pwd = '')
 {
-  # Initialize errors array.
   $errors = array() ; 
 
   # Check email field.
@@ -29,7 +25,6 @@ function validate( $link, $email = '', $pwd = '')
   { $errors[] = 'Enter your password.' ; } 
   else { $p = mysqli_real_escape_string( $link, trim( $pwd ) ) ; }
 
-  # On success retrieve user_id, first_name, and last name from 'users' database.
   if ( empty( $errors ) ) 
   {
     $q = "SELECT user_id, first_name, last_name FROM users WHERE email='$e' AND pass='$p'" ;  
@@ -42,7 +37,7 @@ function validate( $link, $email = '', $pwd = '')
     # Or on failure set error message.
     else { $errors[] = 'Email address and password not found.' ; }
   }
-  # On failure retrieve error message/s.
+  # On failure retrieve error message.
   return array( false, $errors ) ; 
 }
 ?>

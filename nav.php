@@ -1,14 +1,11 @@
-<!-- Base directory for my website -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <meta name="viewport" 
    content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>MKTime - Luxury Lifestyle, Luxury Watches</title>
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" 
 href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
 integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
@@ -28,7 +25,7 @@ aria-expanded="false" aria-label="Toggle navigation">
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.html">Home<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="products.php">Products</a>

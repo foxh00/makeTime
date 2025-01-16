@@ -3,6 +3,14 @@
 	font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-size: 16px;
 }
+
+@media only screen and (max-width: 1000px) {
+	.navbar-collapse.in {
+		display: block !important;
+		height:275px;
+	}
+  }
+
 html {
 	height: 100%;
 }
@@ -12,6 +20,7 @@ html {
   body {
 	margin: 0;
   }
+  
   .visual-header {
 	left: 0;
 	top: 0;
@@ -23,7 +32,6 @@ html {
   }
   .visual-header::before {
 	content: "";
-	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -42,12 +50,16 @@ html {
 	font-family: "Montserrat", sans-serif;
   }
   h1 {
-	font-weight: 500;
-	
+	font-weight: 600;
+	text-shadow: 2px 2px 10px rgb(175, 2, 2);
+  }
+  h3{
+	text-shadow: 5px 5px 10px rgb(136, 0, 84);
   }
   h2 {
 	font-weight: 400;
   }
+
 
 body {
 	position: relative;
@@ -58,7 +70,7 @@ body {
 	padding-bottom: 100px; /* Same height as footer */
 }
 h1, h3{
-	color: #cccccc;
+	color: #ebebeb;
 }
 
 h2, h4, h5 {
@@ -71,6 +83,7 @@ h2, h4, h5 {
 .navbar-text{
 	display: flex;
 	justify-content: left;
+	padding-left: 50px;
 }
 .content-wrapper {
 	width: 1050px;
@@ -257,10 +270,9 @@ main > .product form input[type="submit"] {
 	font-size: 14px;
 	font-weight: bold;
 	border-radius: 5px;
-	cursor: pointer;
 }
 main > .product form input[type="submit"]:hover {
-	background: #434f61;
+	background: #3d649e;
 }
 main > .products h1 {
 	display: block;
@@ -361,7 +373,7 @@ main .cart .buttons input[type="submit"] {
 	margin-left: 5px;
 	padding: 12px 20px;
 	border: 0;
-	background: #4e5c70;
+	background: #536a8a;
 	color: #FFFFFF;
 	font-size: 14px;
 	font-weight: bold;
@@ -409,10 +421,25 @@ main .placeorder p {
     justify-content: center;
 }
 
+.navbar-nav{
+	height:50px;
+}
+
+#navbarNav{
+	margin-top: 15px;
+}
+
 .navbar {
     color: mediumspringgreen;
-    background-color: blue;
+    background-color: blue;	
+	padding-left: 50px;
 }
+
+#cart-items{
+	margin-top: -10px;
+}
+
+
 body{
 	div {
 		padding-top: 10px;

@@ -6,14 +6,14 @@ $msg = "";
 // If upload button is clicked ...
 if (isset($_POST['upload'])) {
 
-    $filename = $_FILES["uploadfile"]["name"];
+    $img = $_FILES["uploadfile"]["name"];
     $tempname = $_FILES["uploadfile"]["tmp_name"];
-    $folder = "./image/" . $filename;
+    $folder = "./products/" . $img;
 
     $db = mysqli_connect("localhost", "root", "", "shoppingcart");
 
     // Get all the submitted data from the form
-    $sql = "INSERT INTO image (filename) VALUES ('$filename')";
+    $sql = "INSERT INTO image (filename) VALUES ('$img')";
     mysqli_query($db, $sql);
 
     if (move_uploaded_file($tempname, $folder)) {
@@ -46,12 +46,12 @@ if (isset($_POST['upload'])) {
     </div>
     <div id="display-image">
         <?php
-        $query = " select * from image ";
+        $query = " select * from products ";
         $result = mysqli_query($db, $query);
 
         while ($data = mysqli_fetch_assoc($result)) {
         ?>
-            <img src="./image/<?php echo $data['filename']; ?>">
+            <img src="./image/<?php echo $data['img']; ?>">
 
         <?php
         }
