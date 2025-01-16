@@ -1,5 +1,5 @@
 <?php 
-  include ( './nav.php' ) ; 
+  require ('functions.php');
 
   if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
   {# Connect to the database.
@@ -7,53 +7,57 @@
       # Initialize an error array.
     $errors = array();
 
-    # Check for a first name.
+    # Check for the name and email.
     if ( empty( $_POST[ 'first_name' ] ) )
     { $errors[] = 'Enter your first name.' ; }
     else
-    { $fn = mysqli_real_escape_string( $link, trim( $_POST[ 'first_name' ] ) ) ; }
+    { $fn = $_POST[ 'first_name' ] ; }
 
     if ( empty( $_POST[ 'last_name']))
     { $errors[] = 'Enter your last name.' ; }
     else{
-      $ln = mysqli_real_escape_string( $link, trim( $_POST[ 'last_name' ] ) ) ;
+      $ln = $_POST[ 'last_name' ] ;
     }
 
     if ( empty( $_POST[ 'email']))
     { $errors[] = 'Enter your email.' ; }
     else{
-      $e = mysqli_real_escape_string( $link, trim( $_POST[ 'email' ] ) ) ;
+      $e =  $_POST[ 'email' ];
     }
 
-    # Check for a password and matching input passwords.
+    # Checks for a password and matching input passwords.
     if ( !empty($_POST[ 'pass1' ] ) )
     {
       if ( $_POST[ 'pass1' ] != $_POST[ 'pass2' ] )
       { $errors[] = 'Passwords do not match.' ; }
       else
-      { $p = mysqli_real_escape_string( $link, trim( $_POST[ 'pass1' ] ) ) ; }
+      { $p = $_POST[ 'pass1' ]; }
     }
     else { $errors[] = 'Enter your password.' ; }
     # Check if email address already registered.
     if ( empty( $errors ) )
     {
-      $q = "SELECT user_id FROM users WHERE email='$e'" ;
-      $r = @mysqli_query ( $link, $q ) ;
-      if ( mysqli_num_rows( $r ) != 0 ) 
-  $errors[] = 
-  'Email address already registered. 
-  <a class="alert-link" href="login.php">Sign In Now</a>' ;
-    }
-    # On success register user inserting into 'users' database table.
+      $query = "SELECT * FROM users WHERE email='$e' LIMIT 1";  
+      $prod_rows = $link->query($query);
+			$result = $prod_rows->fetch(PDO::FETCH_ASSOC);
+
+				$count = $prod_rows->rowCount();
+                if($count > 0)  
+                { 
+                  $errors[] = 
+                  'Email address already registered. 
+                  <a class="alert-link" href="login.php">Sign In Now</a>' ;
+                }
+              }
+    # Register user inserting into 'users' database table.
     if ( empty( $errors ) ) 
     {
       $q = "INSERT INTO users (first_name, last_name, email, pass, reg_date) 
     VALUES ('$fn', '$ln', '$e', '$p', NOW() )";
-      $r = @mysqli_query ( $link, $q ) ;
-      if ($r)
-      { echo '
-      <p>You are now registered.</p>
-      <a class="alert-link" href="login.php">Login</a>'; }
+        if ($link->query($q) === TRUE) {
+          echo "New record created successfully";
+        }
+        header('Location: products.php');
       
   # Close database connection.
       exit();
@@ -68,6 +72,8 @@
       # Close database connection.
     }  
   }?>
+
+<?=template_header('Product')?>
 
 <html>
 <div class="container">
@@ -123,3 +129,5 @@
     <p><br><br><a href="login.php">Already have an account? Login here.</a></p>
 </div>
 </html>
+
+<?=template_footer()?>

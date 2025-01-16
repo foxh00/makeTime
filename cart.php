@@ -2,9 +2,8 @@
 require ('connect_db.php'); 
 require ('functions.php'); 
 
-// Remove product from cart, check for the URL param "remove", this is the product id, make sure it's a number and check if it's in the cart
+// Remove product from cart
 if (isset($_GET['remove']) && is_numeric($_GET['remove'])) {
-    // Remove the product from the shopping cart
     $sql = "DELETE FROM cartcontents WHERE id=".$_GET['remove'];
 
     if ($link->query($sql) === TRUE) {
@@ -22,6 +21,7 @@ $products_in_cart = array();
 foreach ($get_rows as $product) {
     $products_in_cart[] = (object) $product;
 }
+
 
 $subtotal = 0.00;
 // If there are products in cart
@@ -41,19 +41,19 @@ if (isset($_POST['update'])) {
     }
 }
 
-// Send the user to the place order page if they click the Place Order button, also the cart should not be empty
+// Send the user to the place order page on button press
 if (isset($_POST['placeorder'])) {
     if(count($products_in_cart) > 0){
         header('Location: placeorder.php');
     }
 }
-// Check the session variable for products in cart
+// Check for products in cart
 
 ?>
 <?=template_header('Cart')?>
 
 <div class="cart content-wrapper">
-    <h1>Shopping Cart</h1>
+    <br><h4>Shopping Cart</h4>
     <form action="cart.php" method="post">
         <table>
             <thead>
@@ -75,7 +75,7 @@ if (isset($_POST['placeorder'])) {
                 <tr>
                     <td class="img">
                         <a href="product.php?id=<?=$product->id?>">
-                            <img src="imgs/<?=$product->img?>" width="50" height="50" alt="<?=$product->title?>">
+                            <img src="<?=$product->img?>" width="50" height="50" alt="<?=$product->title?>">
                         </a>
                     </td>
                     <td>

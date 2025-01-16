@@ -1,26 +1,22 @@
 <?php 
     require ('functions.php'); 
     require ('connect_db.php'); 
-    // Check to make sure the id parameter is specified in the URL
     if (isset($_GET['id'])) {
         // Prepare statement and execute, prevents SQL injection
         $stmt = $link->prepare('SELECT * FROM products WHERE id = ?');
         $stmt->execute([$_GET['id']]);
-        // Fetch the product from the database and return the result as an Array
+        // Fetch the product and return the result as Array
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
-        // Check if the product exists (array is not empty)
+        // Check if the product exists 
         if (!$product) {
-            // Simple error to display if the id for the product doesn't exists (array is empty)
             exit('Product does not exist!');
         }
     } else {
-        // Simple error to display if the id wasn't specified
         exit('Product does not exist!');
     }
 
   if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
   {
-      # Initialize an error array.
 
     $errors = array();
 
@@ -32,7 +28,7 @@
     $g = $product['gender'];
     $pi = $product['id'];
 
-    # On success register user inserting into 'users' database table.
+    # On success register user, inserting into database.
     if ( empty( $errors ) ) 
     {
     $query_title = "SELECT * FROM cartcontents WHERE title = '$ti'";
@@ -51,7 +47,7 @@
             $increment_count = $link->query($update_cart);
         }
     }
-    # Or report errors.
+    #Report errors.
     else 
     {
       echo '<h4 class="alert-heading" id="err_msg">The following error(s) occurred:</h4>' ;
@@ -61,19 +57,20 @@
     }  
   }?>
 
+
 <?=template_header('Product')?>
 
 <div class="product content-wrapper">
-    <img src="imgs/<?=$product['img']?>" width="500" height="500" alt="<?=$product['title']?>">
+    <img src="<?=$product['img']?>" width="500" height="500" alt="<?=$product['title']?>">
     <div>
-        <h1 class="name"><?=$product['title']?></h1>
+        <h class="name"><?=$product['title']?></h1>
         <span class="price">
             &pound;<?=$product['price']?>
         </span>
         <form action="" method="post">
             <input type="number" name="item_quantity" value="1" min="1" max="<?=$product['quantity']?>" placeholder="Quantity" required>
             <input type="hidden" name="product_id" value="<?=$product['id']?>">
-            <input type="submit" value="Add To Cart">
+            <input type="submit" name="add_item" value="Add To Cart">
         </form>
         <div class="description">
             <?=$product['description']?>
