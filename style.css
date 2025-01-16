@@ -216,7 +216,7 @@ main .recentlyadded .products .product .name, main .products .products-wrapper .
 }
 main .recentlyadded .products .product .price, main .products .products-wrapper .product .price {
 	display: block;
-	color: #cccccc;
+	color: #636363;
 }
 main .recentlyadded .products .product .main .products .products-wrapper .product {
 	color: hsl(0, 0%, 78%);
